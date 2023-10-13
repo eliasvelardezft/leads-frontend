@@ -1,30 +1,31 @@
 <script setup>
-import HelloWorld from './components/HelloWorld.vue'
+import { ref } from 'vue';
+import LeadForm from './components/LeadForm.vue';
+
+const showForm = ref(true);
+const leadId = ref(null);
+
+const handleLeadCreated = (id) => {
+  leadId.value = id;
+  showForm.value = false;
+};
+
+const resetForm = () => {
+  showForm.value = true;
+  leadId.value = null;
+};
 </script>
 
 <template>
   <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="/vite.svg" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://vuejs.org/" target="_blank">
-      <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
-    </a>
+    <div v-if="showForm">
+      <LeadForm @lead-created="handleLeadCreated" />
+    </div>
+    <div v-if="!showForm">
+      <p>Lead successfully created with ID: {{ leadId }}</p>
+      <button @click="resetForm">Register Another Lead</button>
+    </div>
   </div>
-  <HelloWorld msg="Vite + Vue" />
 </template>
 
-<style scoped>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
-}
-</style>
+<style scoped></style>

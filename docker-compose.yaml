@@ -1,0 +1,23 @@
+version: "3.9"
+
+services:
+  leads-frontend:
+    build:
+      context: .
+      dockerfile: ./deployment/dev.Dockerfile
+    container_name: leads-frontend
+    image: leads-frontend
+    command: yarn dev
+    volumes:
+      - .:/app:cached
+      - /app/node_modules
+    ports:
+      - 3333:3333
+    stdin_open: true
+    tty: true
+
+
+networks:
+  default:
+    name: leads
+  
