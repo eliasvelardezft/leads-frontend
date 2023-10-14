@@ -4,7 +4,7 @@ import { useLead } from '../composables/useLead';
 
 const emit = defineEmits();
 
-const { createLead, leadId } = useLead();
+const { createLead, leadId, error } = useLead();
 const address = reactive({
   street: 'augusto cortazar',
   number: '4000',
@@ -24,7 +24,10 @@ const leadCreate = ref({
 
 const handleSubmit = async () => {
   await createLead(leadCreate.value)
-  emit('lead-created', leadId.value);
+  debugger
+  if (!error.value) {
+    emit('lead-created', leadId.value);
+  }
 };
 
 const {
@@ -41,6 +44,7 @@ const {
 <template>
   <div>
     <h1>Register a Lead</h1>
+    <h3 v-if="error">Error: {{ error }}</h3>
     <form @submit.prevent="handleSubmit">
       <div>
         <label for="first-name">First Name:</label>

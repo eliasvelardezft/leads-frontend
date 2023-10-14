@@ -1,6 +1,7 @@
 import { ref } from 'vue';
 import LeadService from '../services/LeadService.js'
 import LeadAdapter from '../adapters/leadAdapter.js';
+import ExceptionAdapter from '../adapters/exceptionAdapter.js';
 
 
 export const useLead = () => {
@@ -14,7 +15,7 @@ export const useLead = () => {
             const response = await LeadService.getAllLeads();
             leads.value = response.data.map(lead => LeadAdapter.toFrontend(lead));
         } catch (err) {
-            error.value = err.message;
+            error.value = ExceptionAdapter(err);
         }
     }
 
@@ -23,7 +24,7 @@ export const useLead = () => {
             const response = await LeadService.getOneLead(id);
             lead.value = response.data;
         } catch (err) {
-            error.value = err.message;
+            error.value = ExceptionAdapter(err);
         }
     }
 
@@ -33,7 +34,7 @@ export const useLead = () => {
             const response = await LeadService.createLead(leadData);
             leadId.value = response;
         } catch (err) {
-            error.value = err.message;
+            error.value = ExceptionAdapter(err);
         }
     }
 

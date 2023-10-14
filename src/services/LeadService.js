@@ -3,7 +3,7 @@ import axios from 'axios';
 const LeadService = {
   api: axios.create({
     baseURL: 'http://localhost:9000/api/v1/leads',
-    withCredentials: true,
+    withCredentials: false,
   }),
 
   async getAllLeads() {
@@ -25,12 +25,8 @@ const LeadService = {
   },
 
   async createLead(lead) {
-    try {
-      const res = await this.api.post('/', lead);
-      return res.data;
-    } catch (error) {
-      console.error(error);
-    }
+    const res = await this.api.post('/', lead);
+    return res.data;
   },
 };
 
