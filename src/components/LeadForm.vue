@@ -1,17 +1,15 @@
 <script setup>
 import { ref, reactive, toRefs } from 'vue';
 import { useLead } from '../composables/useLead';
+import { useCareer } from '../composables/useCareer';
 
 const emit = defineEmits();
 
 const { createLead, leadId, error } = useLead();
-const address = reactive({
-  street: 'augusto cortazar',
-  number: '4000',
-  city: 'cba',
-  province: 'cba',
-  country: 'ARG ',
-});
+const { getAllCareers, careers } = useCareer();
+
+await getAllCareers();
+
 const leadCreate = ref({
   firstName: 'elias',
   lastName: 'velardez',
@@ -19,12 +17,18 @@ const leadCreate = ref({
   phoneNumber: '+1234567',
   yearOfInscription: '2019',
   careerId: '1',
-  address,
+  address: reactive({
+    street: 'augusto cortazar',
+    number: '4000',
+    city: 'cba',
+    province: 'cba',
+    country: 'ARG ',
+  }),
 });
 
 const handleSubmit = async () => {
+  error.value = null;
   await createLead(leadCreate.value)
-  debugger
   if (!error.value) {
     emit('lead-created', leadId.value);
   }
@@ -37,6 +41,7 @@ const {
   phoneNumber,
   yearOfInscription,
   careerId,
+  address,
 } = toRefs(leadCreate.value);
 
 </script>
@@ -72,8 +77,12 @@ const {
       </div>
 
       <div>
-        <label for="career-id">Career ID:</label>
-        <input type="number" id="career-id" v-model="careerId">
+        <label for="career-id">Career:</label>
+        <select id="career-id" v-model="careerId">
+          <option v-for="career in careers" :key="career.id" :value="career.id">
+            {{ career.name }}
+          </option>
+        </select>
       </div>
 
       <div>
