@@ -1,5 +1,5 @@
-const LeadAdapter = {
-  toBackend(frontendData) {
+class LeadAdapter {
+  static toBackend(frontendData) {
     const {
       firstName,
       lastName,
@@ -27,9 +27,9 @@ const LeadAdapter = {
     };
 
     return backendData;
-  },
+  }
 
-  toFrontend(backendData) {
+  static toFrontend(backendData) {
     const {
       id,
       first_name: firstName,
@@ -59,8 +59,7 @@ const LeadAdapter = {
     };
 
     return frontendData;
-  },
-};
-
+  }
+}
 
 export default LeadAdapter;
