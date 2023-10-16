@@ -1,15 +1,14 @@
 <script setup>
 import { ref, reactive, toRefs } from 'vue';
-import { useLead } from '../composables/useLead';
-import { useCareer } from '../composables/useCareer';
-
-const emit = defineEmits();
+import { useLead } from '@/composables/useLead';
+import { useCareer } from '@/composables/useCareer';
 
 const { createLead, leadId, error } = useLead();
-const { getAllCareers, careers } = useCareer();
+const { getCareers, careers } = useCareer();
 
-await getAllCareers();
+await getCareers();
 
+const isSubmitted = ref(false);
 const leadCreate = ref({
   firstName: 'elias',
   lastName: 'velardez',
@@ -30,7 +29,7 @@ const handleSubmit = async () => {
   error.value = null;
   await createLead(leadCreate.value)
   if (!error.value) {
-    emit('lead-created', leadId.value);
+    isSubmitted.value = true;
   }
 };
 
@@ -44,12 +43,13 @@ const {
   address,
 } = toRefs(leadCreate.value);
 
+
 </script>
 
 <template>
-  <div>
-    <h1>Register a Lead</h1>
+  <div v-if="!isSubmitted">
     <h3 v-if="error">Error: {{ error }}</h3>
+    <h1>Register a Lead</h1>
     <form @submit.prevent="handleSubmit">
       <div>
         <label for="first-name">First Name:</label>
@@ -108,5 +108,12 @@ const {
 
       <button type="submit">Submit</button>
     </form>
+  </div>
+  <div v-else>
+    <h1>Lead successfully registered</h1>
+    <p>Lead ID: {{ leadId }}</p>
+    <button>
+      <router-link to="/">Home</router-link>
+    </button>
   </div>
 </template>
