@@ -1,7 +1,7 @@
 import { ref } from "vue";
-import LeadService from "../services/LeadService.js";
-import LeadAdapter from "../adapters/leadAdapter.js";
-import ExceptionAdapter from "../adapters/exceptionAdapter.js";
+import LeadService from "@/services/LeadService.js";
+import LeadAdapter from "@/adapters/leadAdapter.js";
+import ExceptionAdapter from "@/adapters/exceptionAdapter.js";
 
 export const useLead = () => {
   const leads = ref([]);
@@ -9,18 +9,18 @@ export const useLead = () => {
   const leadId = ref(null);
   const error = ref(null);
 
-  const getAllLeads = async () => {
+  const getLeads = async () => {
     try {
-      const response = await LeadService.getAllLeads();
+      const response = await LeadService.getLeads();
       leads.value = response.data.map((lead) => LeadAdapter.toFrontend(lead));
     } catch (err) {
       error.value = ExceptionAdapter("lead", err);
     }
   };
 
-  const getOneLead = async (id) => {
+  const getLead = async (id) => {
     try {
-      const response = await LeadService.getOneLead(id);
+      const response = await LeadService.getLead(id);
       lead.value = response.data;
     } catch (err) {
       error.value = ExceptionAdapter("lead", err);
@@ -37,5 +37,5 @@ export const useLead = () => {
     }
   };
 
-  return { leads, lead, leadId, error, getAllLeads, getOneLead, createLead };
+  return { leads, lead, leadId, error, getLeads, getLead, createLead };
 };
