@@ -6,12 +6,12 @@ const LeadService = {
     withCredentials: false,
   }),
 
-  async getAllLeads() {
+  async getLeads() {
     const res = await this.api.get("/");
     return res.data;
   },
 
-  async getOneLead(id) {
+  async getLead(id) {
     const res = await this.api.get(`/${id}`);
     return res.data;
   },

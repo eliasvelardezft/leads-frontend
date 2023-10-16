@@ -6,12 +6,12 @@ const CareerService = {
     withCredentials: false,
   }),
 
-  async getAllCareers() {
+  async getCareers() {
     const res = await this.api.get("/");
     return res.data;
   },
 
-  async getOneCareer(id) {
+  async getCareer(id) {
     const res = await this.api.get(`/${id}`);
     return res.data;
   },
