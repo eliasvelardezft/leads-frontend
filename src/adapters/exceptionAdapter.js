@@ -10,6 +10,17 @@ const ExceptionMapper = (errorDetail, errorStatus) => {
     404: "Not found!",
     500: "Internal server error!",
   };
+  if (errorStatus === 422) {
+    let errorMessage = "";
+    for (const detail of errorDetail) {
+      if (detail.loc) {
+        const errorLocation = detail.loc[1] || "field";
+        errorMessage += `Invalid ${errorLocation}. `;
+      }
+    }
+    return errorMessage.slice(0, -2);
+  }
+
   if (messages[errorDetail]) {
     return messages[errorDetail];
   } else if (genericMessages[errorStatus]) {
@@ -21,7 +32,7 @@ const ExceptionMapper = (errorDetail, errorStatus) => {
 
 const ExceptionAdapter = (error) => {
   const { response } = error;
-  const { data } = response;
+  const { data, status } = response;
   const { detail } = data;
   return ExceptionMapper(detail, status);
 };
