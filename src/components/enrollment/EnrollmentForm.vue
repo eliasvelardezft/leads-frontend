@@ -28,33 +28,6 @@ const updateParent = () => {
 
 </script>
 
-<!-- <template>
-    <div>
-        <label for="career-id">Career:</label>
-        <select @change="updateParent" id="career-id" v-model="modelValue.career">
-            <option v-for="career in careers" :key="career.id" :value="career">
-                {{ career.name }}
-            </option>
-        </select>
-        <label for="subect-times-taken">Times taken:</label>
-        <input type="number" id="subect-times-taken" v-model="modelValue.subjectTimesTaken">
-
-        <label for="subject-id">Subject:</label>
-        <select @change="updateParent" id="subject-id" v-model="modelValue.subject" :disabled="!modelValue.career">
-            <option v-for="subject in subjects" :key="subject.id" :value="subject">
-                {{ subject.name }}
-            </option>
-        </select>
-
-        <label for="course-id">Course:</label>
-        <select @change="updateParent" id="course-id" v-model="modelValue.course" :disabled="!modelValue.subject">
-            <option v-for="course in courses" :key="course.id" :value="course">
-                {{ course.start_date }}/{{ course.end_date }}/{{ course.classroom }}/{{ course.professor }}
-            </option>
-        </select>
-    </div>
-</template> -->
-
 <template>
     <div class="bg-gray-800 p-4 rounded-lg mb-4">
         <label for="career-id" class="block text-sm font-medium">Career:</label>
@@ -64,9 +37,6 @@ const updateParent = () => {
                 {{ career.name }}
             </option>
         </select>
-        <label for="subect-times-taken" class="block text-sm font-medium">Times taken:</label>
-        <input type="number" id="subect-times-taken" v-model="modelValue.subjectTimesTaken"
-            class="bg-gray-50 text-gray-900 p-2 rounded w-full mb-4">
         <label for="subject-id" class="block text-sm font-medium">Subject:</label>
         <select @change="updateParent" id="subject-id" v-model="modelValue.subject" :disabled="!modelValue.career"
             class="bg-gray-50 text-gray-900 p-2 rounded w-full mb-4">
@@ -74,6 +44,9 @@ const updateParent = () => {
                 {{ subject.name }}
             </option>
         </select>
+        <label for="subect-times-taken" class="block text-sm font-medium">Times taken:</label>
+        <input type="number" id="subect-times-taken" v-model="modelValue.subjectTimesTaken"
+            class="bg-gray-50 text-gray-900 p-2 rounded w-full mb-4">
         <label for="course-id" class="block text-sm font-medium">Course:</label>
         <select @change="updateParent" id="course-id" v-model="modelValue.course" :disabled="!modelValue.subject"
             class="bg-gray-50 text-gray-900 p-2 rounded w-full mb-4">
@@ -83,4 +56,3 @@ const updateParent = () => {
         </select>
     </div>
 </template>
-  

@@ -3,7 +3,7 @@ import { ref, reactive, toRefs } from 'vue';
 import { useLead } from '@/composables/useLead';
 import { useCareer } from '@/composables/useCareer';
 
-const { createLead, leadId, error } = useLead();
+const { createLead, leadId, leadError } = useLead();
 const { getCareers, careers } = useCareer();
 
 await getCareers();
@@ -26,9 +26,9 @@ const leadCreate = ref({
 });
 
 const handleSubmit = async () => {
-  error.value = null;
+  leadError.value = null;
   await createLead(leadCreate.value)
-  if (!error.value) {
+  if (!leadError.value) {
     isSubmitted.value = true;
   }
 };
@@ -50,7 +50,7 @@ const {
   <div class="flex flex-col items-center justify-center min-h-screen bg-gray-900 text-gray-50">
     <div v-if="!isSubmitted"
       class="w-full max-w-md p-8 bg-gray-800 rounded shadow-md flex flex-col justify-center items-center">
-      <h3 v-if="error" class="text-red-500">Error: {{ error }}</h3>
+      <h3 v-if="leadError" class="text-red-500">Error: {{ leadError }}</h3>
       <h1 class="mb-4 text-2xl font-semibold">Register a Lead</h1>
       <form @submit.prevent="handleSubmit" class="w-full">
         <div class="mb-4">
@@ -114,7 +114,7 @@ const {
       <h1 class="mb-4 text-2xl font-semibold text-gray-700">Lead successfully registered</h1>
       <p class="mb-4 text-lg text-gray-600">Lead ID: {{ leadId }}</p>
       <button class="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-        <router-link to="/" class="text-white">Home</router-link>
+        <router-link to="/" class="block inset-0">Home</router-link>
       </button>
     </div>
   </div>
