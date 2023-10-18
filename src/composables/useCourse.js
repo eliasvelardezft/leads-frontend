@@ -5,7 +5,7 @@ import ExceptionAdapter from "@/adapters/exceptionAdapter.js";
 export const useCourse = () => {
   const courses = ref([]);
   const course = ref({});
-  const error = ref(null);
+  const courseError = ref(null);
 
   const getCourses = async (filter) => {
     try {
@@ -13,7 +13,7 @@ export const useCourse = () => {
       courses.value = response;
       return response;
     } catch (err) {
-      error.value = ExceptionAdapter("course", err);
+      courseError.value = ExceptionAdapter(err);
     }
   };
 
@@ -22,14 +22,14 @@ export const useCourse = () => {
       const response = await CourseService.getCourse(id);
       course.value = response;
     } catch (err) {
-      error.value = ExceptionAdapter("course", err);
+      courseError.value = ExceptionAdapter("course", err);
     }
   };
 
   return {
     courses,
     course,
-    error,
+    courseError,
     getCourses,
     getCourse,
   };

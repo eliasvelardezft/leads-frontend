@@ -1,13 +1,13 @@
 import { ref } from "vue";
-import EnrollmentService from "../services/EnrollmentService.js";
-import EnrollmentAdapter from "../adapters/enrollmentAdapter.js";
-import ExceptionAdapter from "../adapters/exceptionAdapter.js";
+import EnrollmentService from "@/services/EnrollmentService.js";
+import EnrollmentAdapter from "@/adapters/enrollmentAdapter.js";
+import ExceptionAdapter from "@/adapters/exceptionAdapter.js";
 
 export const useEnrollment = () => {
   const enrollments = ref([]);
   const enrollment = ref({});
   const enrollmentId = ref(null);
-  const error = ref(null);
+  const enrollmentError = ref(null);
 
   const getEnrollments = async (filter) => {
     try {
@@ -16,7 +16,7 @@ export const useEnrollment = () => {
         EnrollmentAdapter.toFrontend(enrollment)
       );
     } catch (err) {
-      error.value = ExceptionAdapter("enrollment", err);
+      enrollmentError.value = ExceptionAdapter(err);
     }
   };
 
@@ -25,7 +25,7 @@ export const useEnrollment = () => {
       const response = await EnrollmentService.getEnrollment(id);
       enrollment.value = response.data;
     } catch (err) {
-      error.value = ExceptionAdapter("enrollment", err);
+      enrollmentError.value = ExceptionAdapter(err);
     }
   };
 
@@ -42,7 +42,7 @@ export const useEnrollment = () => {
       enrollments.value = response;
       return response;
     } catch (err) {
-      error.value = ExceptionAdapter("enrollment with that course", err);
+      enrollmentError.value = ExceptionAdapter(err);
     }
   };
 
@@ -50,7 +50,7 @@ export const useEnrollment = () => {
     enrollments,
     enrollment,
     enrollmentId,
-    error,
+    enrollmentError,
     getEnrollments,
     getEnrollment,
     createEnrollments,
