@@ -1,8 +1,9 @@
 import axios from "axios";
+import { apiRoot } from "@/constants";
 
 const CourseService = {
   api: axios.create({
-    baseURL: "http://localhost:9000/api/v1/admin/course",
+    baseURL: `${apiRoot}/admin/course`,
     withCredentials: false,
   }),
 

@@ -1,8 +1,9 @@
 import axios from "axios";
+import { apiRoot } from "@/constants";
 
 const EnrollmentService = {
   api: axios.create({
-    baseURL: "http://localhost:9000/api/v1/enrollments",
+    baseURL: `${apiRoot}/enrollments`,
     withCredentials: false,
   }),
 

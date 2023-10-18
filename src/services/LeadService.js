@@ -1,8 +1,9 @@
 import axios from "axios";
+import { apiRoot } from "@/constants";
 
 const LeadService = {
   api: axios.create({
-    baseURL: "http://localhost:9000/api/v1/leads",
+    baseURL: `${apiRoot}/leads`,
     withCredentials: false,
   }),
 

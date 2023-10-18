@@ -7,6 +7,8 @@ services:
       dockerfile: ./deployment/Dockerfile
     container_name: leads-frontend
     image: leads-frontend
+    env_file:
+      - .env
     command: yarn dev
     volumes:
       - .:/app:cached
