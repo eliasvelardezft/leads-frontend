@@ -10,18 +10,18 @@ await getCareers();
 
 const isSubmitted = ref(false);
 const leadCreate = ref({
-  firstName: 'elias',
-  lastName: 'velardez',
-  email: 'elias@gmail.com',
-  phoneNumber: '+1234567',
-  yearOfInscription: '2019',
-  careerId: '1',
+  firstName: '',
+  lastName: '',
+  email: '',
+  phoneNumber: '',
+  yearOfInscription: '',
+  careerId: '',
   address: reactive({
-    street: 'augusto cortazar',
-    number: '4000',
-    city: 'cba',
-    province: 'cba',
-    country: 'ARG ',
+    street: '',
+    number: '',
+    city: '',
+    province: '',
+    country: '',
   }),
 });
 
@@ -55,24 +55,26 @@ const {
       <form @submit.prevent="handleSubmit" class="w-full">
         <div class="mb-4">
           <label class="block text-sm font-medium" for="first-name">First Name:</label>
-          <input type="text" id="first-name" v-model="firstName" class="mt-1 p-2 w-full border rounded-md text-gray-900">
+          <input required type="text" minlength="3" id="first-name" v-model="firstName"
+            class="mt-1 p-2 w-full border rounded-md text-gray-900">
         </div>
         <div class="mb-4">
           <label class="block text-sm font-medium" for="last-name">Last Name:</label>
-          <input type="text" id="last-name" v-model="lastName" class="mt-1 p-2 w-full border rounded-md text-gray-900">
+          <input required type="text" minlength="1" id="last-name" v-model="lastName"
+            class="mt-1 p-2 w-full border rounded-md text-gray-900">
         </div>
         <div class="mb-4">
           <label class="block text-sm font-medium" for="email">Email:</label>
-          <input type="email" id="email" v-model="email" class="mt-1 p-2 w-full border rounded-md text-gray-900">
+          <input required type="email" id="email" v-model="email" class="mt-1 p-2 w-full border rounded-md text-gray-900">
         </div>
         <div class="mb-4">
           <label class="block text-sm font-medium" for="phone-number">Phone Number:</label>
-          <input type="text" id="phone-number" v-model="phoneNumber"
+          <input required type="text" minlength="1" id="phone-number" v-model="phoneNumber"
             class="mt-1 p-2 w-full border rounded-md text-gray-900">
         </div>
         <div class="mb-4">
           <label class="block text-sm font-medium" for="year-of-inscription">Year of Inscription:</label>
-          <input type="number" id="year-of-inscription" v-model="yearOfInscription"
+          <input required type="number" id="year-of-inscription" v-model="yearOfInscription"
             class="mt-1 p-2 w-full border rounded-md text-gray-900">
         </div>
         <div class="mb-4">
@@ -85,24 +87,27 @@ const {
         </div>
         <div class="mb-4">
           <label class="block text-sm font-medium" for="street">Street:</label>
-          <input type="text" id="street" v-model="address.street" class="mt-1 p-2 w-full border rounded-md text-gray-900">
+          <input required type="text" minlength="1" id="street" v-model="address.street"
+            class="mt-1 p-2 w-full border rounded-md text-gray-900">
         </div>
         <div class="mb-4">
           <label class="block text-sm font-medium" for="number">Number:</label>
-          <input type="text" id="number" v-model="address.number" class="mt-1 p-2 w-full border rounded-md text-gray-900">
+          <input required type="text" minlength="1" id="number" v-model="address.number"
+            class="mt-1 p-2 w-full border rounded-md text-gray-900">
         </div>
         <div class="mb-4">
           <label class="block text-sm font-medium" for="city">City:</label>
-          <input type="text" id="city" v-model="address.city" class="mt-1 p-2 w-full border rounded-md text-gray-900">
+          <input required type="text" minlength="1" id="city" v-model="address.city"
+            class="mt-1 p-2 w-full border rounded-md text-gray-900">
         </div>
         <div class="mb-4">
           <label class="block text-sm font-medium" for="province">Province:</label>
-          <input type="text" id="province" v-model="address.province"
+          <input required type="text" minlength="1" id="province" v-model="address.province"
             class="mt-1 p-2 w-full border rounded-md text-gray-900">
         </div>
         <div class="mb-4">
           <label class="block text-sm font-medium" for="country">Country:</label>
-          <input type="text" id="country" v-model="address.country"
+          <input required type="text" minlength="1" id="country" v-model="address.country"
             class="mt-1 p-2 w-full border rounded-md text-gray-900">
         </div>
         <button type="submit" class="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">

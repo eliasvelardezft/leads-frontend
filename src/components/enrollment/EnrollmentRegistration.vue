@@ -28,7 +28,8 @@ const handleSubmit = async () => {
         <form v-if="!isSubmitted" @submit.prevent="handleSubmit"
             class="bg-gray-800 p-4 rounded-lg mx-auto w-3/4 mt-10 flex flex-col">
             <label for="lead-id" class="block text-sm font-medium">Lead ID:</label>
-            <input type="number" id="lead-id" v-model="leadId" class="bg-gray-50 text-gray-900 p-2 rounded w-full mb-4">
+            <input required type="number" id="lead-id" v-model="leadId"
+                class="bg-gray-50 text-gray-900 p-2 rounded w-full mb-4">
             <EnrollmentForm v-for="(enrollment, index) in enrollments" :key="index" v-model="enrollments[index]" />
             <div class="flex justify-center">
                 <button type="button" @click="addEnrollment"

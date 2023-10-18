@@ -45,7 +45,7 @@ const updateParent = () => {
             </option>
         </select>
         <label for="subect-times-taken" class="block text-sm font-medium">Times taken:</label>
-        <input type="number" id="subect-times-taken" v-model="modelValue.subjectTimesTaken"
+        <input required type="number" id="subect-times-taken" v-model="modelValue.subjectTimesTaken"
             class="bg-gray-50 text-gray-900 p-2 rounded w-full mb-4">
         <label for="course-id" class="block text-sm font-medium">Course:</label>
         <select @change="updateParent" id="course-id" v-model="modelValue.course" :disabled="!modelValue.subject"
