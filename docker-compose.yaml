@@ -4,7 +4,7 @@ services:
   leads-frontend:
     build:
       context: .
-      dockerfile: ./deployment/dev.Dockerfile
+      dockerfile: ./deployment/Dockerfile
     container_name: leads-frontend
     image: leads-frontend
     command: yarn dev
