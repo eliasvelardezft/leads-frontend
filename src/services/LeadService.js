@@ -7,7 +7,7 @@ const LeadService = {
   }),
 
   async getLeads() {
-    const res = await this.api.get("/");
+    const res = await this.api.get("");
     return res.data;
   },
 
@@ -17,7 +17,7 @@ const LeadService = {
   },
 
   async createLead(lead) {
-    const res = await this.api.post("/", lead);
+    const res = await this.api.post("", lead);
     return res.data;
   },
 };

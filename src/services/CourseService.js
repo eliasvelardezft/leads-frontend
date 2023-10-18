@@ -7,7 +7,7 @@ const CourseService = {
   }),
 
   async getCourses(filter) {
-    const res = await this.api.get("/", { params: filter });
+    const res = await this.api.get("", { params: filter });
     return res.data;
   },
 

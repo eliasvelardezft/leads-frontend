@@ -7,7 +7,7 @@ const EnrollmentService = {
   }),
 
   async getEnrollments(filter) {
-    const res = await this.api.get("/");
+    const res = await this.api.get("");
     return res.data;
   },
 

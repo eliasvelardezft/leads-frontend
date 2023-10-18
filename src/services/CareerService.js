@@ -7,7 +7,7 @@ const CareerService = {
   }),
 
   async getCareers() {
-    const res = await this.api.get("/");
+    const res = await this.api.get("");
     return res.data;
   },
 

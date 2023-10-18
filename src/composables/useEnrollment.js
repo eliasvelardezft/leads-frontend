@@ -42,7 +42,7 @@ export const useEnrollment = () => {
       enrollments.value = response;
       return response;
     } catch (err) {
-      error.value = ExceptionAdapter("enrollment", err);
+      error.value = ExceptionAdapter("enrollment with that course", err);
     }
   };
 
