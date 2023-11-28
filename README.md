@@ -1,3 +1,6 @@
+# Leads (students)
+This is the frontend app for a students enrollment service.
+
 backend repo: https://github.com/eliasvelardezft/leads
 
 ## Application Structure
