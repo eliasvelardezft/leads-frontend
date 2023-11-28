@@ -1,3 +1,5 @@
+backend repo: https://github.com/eliasvelardezft/leads
+
 ## Application Structure
 
 - **components**: use single file components seeking to have a simple structure. As for the javascript in these files, I use the methods and objects that I expose from the **composables** to handle the UI logic. For styles, I use tailwindcss for the simplicity it provides to someone who is not very comfortable with css.
